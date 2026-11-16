@@ -103,6 +103,26 @@ void DecisionTree::registerPerson(uint32_t bitmask, const std::string& name) {
     knownPersonalities.emplace_back(bitmask, name);
 }
 
+bool DecisionTree::savePersonalityToFile(const std::string& csvFilePath, uint32_t bitmask, const std::string& name, const std::string& description) {
+    std::ofstream file(csvFilePath, std::ios::app);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open personalities CSV for appending: " << csvFilePath << std::endl;
+        return false;
+    }
+
+    std::string binStr = "0b";
+    for (int i = 19; i >= 0; --i) {
+        binStr += ((bitmask >> i) & 1) ? '1' : '0';
+    }
+
+    file << binStr << "," << name;
+    if (!description.empty()) {
+        file << "," << description;
+    }
+    file << "\n";
+    return true;
+}
+
 void DecisionTree::buildTree(int maxDepth) {
     root = buildSubtree(0, maxDepth, 0);
 }

@@ -49,6 +49,10 @@ public:
     // Register a known person for a given 20-bit path
     void registerPerson(uint32_t bitmask, const std::string& name);
 
+    // Save a new personality to the CSV file
+    bool savePersonalityToFile(const std::string& csvFilePath, uint32_t bitmask, const std::string& name, const std::string& description = "");
+
+
 private:
     std::shared_ptr<TreeNode> root;
     std::vector<std::string> levelQuestions;

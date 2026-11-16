@@ -123,8 +123,22 @@ void GameEngine::play() {
         std::string actualPerson;
         std::getline(std::cin, actualPerson);
         if (!actualPerson.empty()) {
-            tree.registerPerson(currentPath, actualPerson);
-            std::cout << "Thank you! Learned \"" << actualPerson << "\" for this decision path!\n";
+            std::cout << "Optional short description/title: ";
+            std::string description;
+            std::getline(std::cin, description);
+
+            std::string label = actualPerson;
+            if (!description.empty()) {
+                label += " (" + description + ")";
+            }
+
+            tree.registerPerson(currentPath, label);
+            bool saved = tree.savePersonalityToFile(personalitiesPath, currentPath, actualPerson, description);
+            if (saved) {
+                std::cout << "Thank you! Learned \"" << actualPerson << "\" and saved to " << personalitiesPath << "!\n";
+            } else {
+                std::cout << "Thank you! Learned \"" << actualPerson << "\" for this decision path!\n";
+            }
         }
     }
 }

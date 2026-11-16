@@ -8,12 +8,15 @@ A classic **20-Questions** guessing game implemented in C++ using a 20-level bin
 
 ```
 20_Questions/
-├── Makefile                # Build automation (compile, clean, test, run)
+├── Makefile                # Build automation (compile, clean, test, run, run-py)
 ├── README.md               # Documentation and execution instructions
 ├── .gitignore              # Ignores build artifacts and binaries
 ├── data/
 │   ├── questions.csv       # 20 level questions in CSV format
 │   └── personalities.csv   # Pre-seeded personalities with 20-bit path masks
+├── main.py                 # Python entry point and CLI argument handling
+├── decision_tree.py        # Python binary tree definitions and persistence
+├── game_engine.py          # Python interactive game loop interface
 ├── src/
 │   ├── main.cpp            # Entry point and CLI argument handling
 │   ├── DecisionTree.h      # Binary tree definitions & node structures
@@ -40,6 +43,24 @@ A classic **20-Questions** guessing game implemented in C++ using a 20-level bin
 ---
 
 ## 🚀 Building & Running
+
+### Running with Python (No compiler required)
+
+1. **Run the game:**
+   ```bash
+   python3 main.py
+   # Or via make:
+   make run-py
+   ```
+
+2. **Run automated verification tests:**
+   ```bash
+   python3 main.py --test
+   # Or via make:
+   make test-py
+   ```
+
+### Building & Running with C++
 
 ### Prerequisites
 - A modern C++ compiler supporting C++17 (`clang++` or `g++`)

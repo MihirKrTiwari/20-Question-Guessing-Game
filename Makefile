@@ -28,4 +28,10 @@ test: $(BIN)
 run: $(BIN)
 	./$(BIN)
 
-.PHONY: all clean test run
+run-py:
+	python3 main.py
+
+test-py:
+	python3 main.py --test
+
+.PHONY: all clean test run run-py test-py
