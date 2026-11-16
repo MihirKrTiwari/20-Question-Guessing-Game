@@ -1,6 +1,6 @@
 import sys
 from typing import Optional
-from decision_tree import DecisionTree, TreeNode
+from twenty_questions.decision_tree import DecisionTree, TreeNode
 
 
 class GameEngine:

@@ -1,6 +1,8 @@
-# 20-Questions Binary Tree Game (C++)
+# 20-Questions Binary Decision Tree Game (Python)
 
-A classic **20-Questions** guessing game implemented in C++ using a 20-level binary decision tree. The player thinks of a famous personality (historical, scientist, athlete, leader, entertainer, etc.), answers 20 yes/no questions, and the binary tree evaluates and resolves the person.
+A classic **20-Questions** guessing game implemented in Python using a 20-level binary decision tree. The player thinks of a famous personality (historical figure, scientist, athlete, leader, entertainer, etc.), answers 20 yes/no questions, and the binary decision tree evaluates and predicts who the player is thinking of.
+
+If the game guesses incorrectly or encounters someone new, it learns the person and persists their 20-bit trait mask directly into `data/personalities.csv`.
 
 ---
 
@@ -8,22 +10,17 @@ A classic **20-Questions** guessing game implemented in C++ using a 20-level bin
 
 ```
 20_Questions/
-├── Makefile                # Build automation (compile, clean, test, run, run-py)
-├── README.md               # Documentation and execution instructions
-├── .gitignore              # Ignores build artifacts and binaries
+├── main.py                     # CLI entry point and argument parsing
+├── README.md                   # Documentation and run instructions
+├── .gitignore                  # Python & OS ignore rules
 ├── data/
-│   ├── questions.csv       # 20 level questions in CSV format
-│   └── personalities.csv   # Pre-seeded personalities with 20-bit path masks
-├── main.py                 # Python entry point and CLI argument handling
-├── decision_tree.py        # Python binary tree definitions and persistence
-├── game_engine.py          # Python interactive game loop interface
-├── src/
-│   ├── main.cpp            # Entry point and CLI argument handling
-│   ├── DecisionTree.h      # Binary tree definitions & node structures
-│   ├── DecisionTree.cpp    # Tree traversal and path-resolution logic
-│   ├── GameEngine.h        # Interactive game loop interface
-│   └── GameEngine.cpp      # User I/O and interactive question flow
-└── build/                  # Compiled object files and binary target
+│   ├── questions.csv           # 20 level questions in CSV format
+│   └── personalities.csv       # Known personalities with 20-bit path masks
+└── src/
+    └── twenty_questions/
+        ├── __init__.py         # Package exports
+        ├── decision_tree.py    # Binary tree definitions, resolution & CSV persistence
+        └── game_engine.py      # Interactive game loop and user I/O
 ```
 
 ---
@@ -31,68 +28,44 @@ A classic **20-Questions** guessing game implemented in C++ using a 20-level bin
 ## 🌳 Binary Decision Tree Mechanics
 
 - **Tree Depth / Levels:** 20 levels.
-- **Node Structure:** Each internal node represents a question corresponding to that level.
-  - Answering **Yes (`y`)** traverses the **left child** branch (encoded as binary `1`).
-  - Answering **No (`n`)** traverses the **right child** branch (encoded as binary `0`).
-- **Binary Path Key:** The 20 answers form an exact 20-bit path key ($2^{20} = 1,048,576$ possible leaf states).
+- **Node Structure:** Each level represents an identifying yes/no question.
+  - Answering **Yes (`y`)** traverses the left child (binary `1`).
+  - Answering **No (`n`)** traverses the right child (binary `0`).
+- **Binary Path Key:** 20 answers form an exact 20-bit path key ($2^{20} = 1,048,576$ possible leaf states).
 - **Personality Resolution:**
-  - Evaluates exact bitmask matches against known famous figures stored in `data/personalities.csv`.
-  - In cases where answers vary slightly, a **Hamming distance** nearest-neighbor matcher finds the closest personality match and reports the trait alignment score (e.g. `19/20 traits match`).
-  - If the player was thinking of someone new, the game allows entering the correct name and learns the path dynamically during the session!
+  - Evaluates exact bitmask matches against known personalities stored in `data/personalities.csv`.
+  - In cases where answers vary slightly, a **Hamming distance** nearest-neighbor matcher finds the closest personality match and reports the alignment score (e.g., `19/20 traits match`).
+- **Learning & Persistence:**
+  - If the game cannot guess or guesses incorrectly, it asks who the player was thinking of.
+  - The new person and their 20-bit answer bitmask are automatically saved to `data/personalities.csv` and loaded for future games.
 
 ---
 
-## 🚀 Building & Running
+## 🚀 Running the Game
 
-### Running with Python (No compiler required)
+### Prerequisites
+- Python 3.8+ (no external third-party dependencies required; uses Python standard library)
 
-1. **Run the game:**
+### Commands
+
+1. **Play the game:**
    ```bash
    python3 main.py
-   # Or via make:
-   make run-py
    ```
 
 2. **Run automated verification tests:**
    ```bash
    python3 main.py --test
-   # Or via make:
-   make test-py
    ```
 
-### Building & Running with C++
-
-### Prerequisites
-- A modern C++ compiler supporting C++17 (`clang++` or `g++`)
-- `make`
-
-### Commands
-
-1. **Build the project:**
+3. **Specify custom CSV datasets (optional):**
    ```bash
-   make
-   ```
-
-2. **Run the game:**
-   ```bash
-   make run
-   # Or directly:
-   ./build/twenty_questions
-   ```
-
-3. **Run automated verification tests:**
-   ```bash
-   make test
-   ```
-
-4. **Clean build artifacts:**
-   ```bash
-   make clean
+   python3 main.py path/to/questions.csv path/to/personalities.csv
    ```
 
 ---
 
 ## 📝 Customization
 
-- **Questions:** Edit [`data/questions.csv`](file:///Users/mihirtiwari/Documents/20_Questions/data/questions.csv) to modify the 20 questions.
-- **Personalities:** Add new entries to [`data/personalities.csv`](file:///Users/mihirtiwari/Documents/20_Questions/data/personalities.csv) with their 20-bit binary mask (e.g., `0b11001001111110110111,Name,Description`).
+- **Questions:** Edit [`data/questions.csv`](file:///Users/mihirtiwari/Documents/20_Questions/data/questions.csv) to modify any of the 20 questions.
+- **Personalities:** Pre-seed or inspect known entries in [`data/personalities.csv`](file:///Users/mihirtiwari/Documents/20_Questions/data/personalities.csv).

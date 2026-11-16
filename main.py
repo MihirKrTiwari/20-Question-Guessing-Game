@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 import sys
-from game_engine import GameEngine
+import os
+
+# Add src to module lookup path
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "src"))
+
+from twenty_questions.game_engine import GameEngine
 
 
 def main():
