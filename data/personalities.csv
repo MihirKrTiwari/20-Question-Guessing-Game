@@ -1,0 +1,29 @@
+// Bitmask,Name,Description
+// Bit position k (0 to 19): 1 = Yes to Question k, 0 = No to Question k
+// Example: Alan Turing
+// Q0(Alive): No(0), Q1(Sci/Tech): Yes(1), Q2(Artist): No(0), Q3(Leader/Phil): No(0), Q4(NA): No(0), Q5(Europe): Yes(1),
+// Q6(Asia): No(0), Q7(20th/21st): Yes(1), Q8(Major Awards): No(0 - died early), Q9(Founded): Yes(1 - computing),
+// Q10(Written works): Yes(1), Q11(Fame < 30): Yes(1), Q12(Invention): Yes(1), Q13(Pop Culture): Yes(1),
+// Q14(Public service): Yes(1 - Bletchley Park), Q15(Computing/Physics): Yes(1), Q16(Multi continent): No(0),
+// Q17(Textbooks): Yes(1), Q18(Biopic): Yes(1 - Imitation Game), Q19(Two words): Yes(1)
+// Let's seed well-known figures with their answers:
+0b11001001111110110111,Elon Musk,Tech Entrepreneur and CEO of Tesla and SpaceX
+0b01000101011111110111,Alan Turing,Father of Modern Computer Science
+0b01000101101010010111,Albert Einstein,Theoretical Physicist (Theory of Relativity)
+0b01000100001010010111,Isaac Newton,Mathematician & Physicist (Laws of Motion & Gravity)
+0b01000100001010000111,Ada Lovelace,First Computer Programmer
+0b00101001100101000111,Michael Jackson,King of Pop
+0b10101001101001001111,Taylor Swift,Global Singer-Songwriter
+0b00010101011001100111,Mahatma Gandhi,Leader of Indian Independence Movement
+0b00011001011000100111,Abraham Lincoln,16th President of the United States
+0b00010100001000000101,Aristotle,Ancient Greek Philosopher
+0b11001001011111010111,Bill Gates,Co-founder of Microsoft & Philanthropist
+0b10100101100001001111,Cristiano Ronaldo,Legendary Footballer
+0b10100001100001000111,Sachin Tendulkar,Legendary Cricketer
+0b00100100001011000111,Leonardo da Vinci,Renaissance Polymath & Painter of Mona Lisa
+0b01000101101010010111,Marie Curie,Physicist & Chemist (Pioneer in Radioactivity)
+0b11001001011011010111,Mark Zuckerberg,Co-founder and CEO of Meta
+0b00010100000000001111,Alexander the Great,King of Ancient Macedonia
+0b10011001011001101111,Barack Obama,44th President of the United States
+0b00100100001001000111,William Shakespeare,Playwright and Poet
+0b01000101111011110111,Stephen Hawking,Theoretical Physicist & Cosmologist
